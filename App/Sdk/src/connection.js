@@ -2385,7 +2385,7 @@ connection.prototype.destroyGroup = function (options) {
 }
 
 /**
- * leaveGroupBySelf leave group by self主动离开群组
+ * leaveGroupBySelf leave group by self
  *
  * @param options
  */
