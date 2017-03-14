@@ -63,6 +63,7 @@ Current version **v0.2.0 @ 2017-01-03**
 3. Add simulator: select "Run" tab -> "Edit Configurations" -> click "+" sign -> select "React Native" -> select "Target platform", either Android or iOS -> click "OK"
 4. select "Run" tab -> click "Run"
 
+- [WebStorm react native setup](https://blog.jetbrains.com/webstorm/2016/12/developing-mobile-apps-with-react-native-in-webstorm/)
 
 #### Android 
 
