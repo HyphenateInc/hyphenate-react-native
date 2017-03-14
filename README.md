@@ -321,10 +321,12 @@ click done, done
 - Chat optimization, limit the queue length and message pagination
 - full loading
 
-## SDK 
+
+
+## Hyphenate Web SDK 
 > React-native SDK is modified due to different browser environment from Hyphenate web SDK. Hyphenate web SDK is not suitable for direct use under react-native environment, please refer the following steps for react-native SDK integration.
 
-### How to integrate?
+### Integration
 1. Copy App/Lib/WebIM.js and App/Lib/WebIMConfig.js
  
   WebIM.js
@@ -367,7 +369,7 @@ click done, done
 4. replace with customized http module
 3. API is the same [Hyphenate web SDK](http://docs.hyphenate.io/docs/web-install-sdk)
 
-Demo example: Containers/App.js, listen to XMPP event（currently using redux, you can customize it depending on the framework and method of data processing)
+- Demo example: Containers/App.js, listen to XMPP event（currently using redux, you can customize it depending on the framework and method of data processing)
 
 ```js
 WebIM.conn.listen({
