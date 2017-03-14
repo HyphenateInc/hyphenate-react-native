@@ -36,9 +36,10 @@ Current version **v0.2.0 @ 2017-01-03**
 
 ## Get Started
 
-### Compile and Run
+### Setup React Native Environment
 
-Run `$ npm install` to install dependencies and ensure React Native are up to date.
+1. Set up React Native environment https://facebook.github.io/react-native/docs/getting-started.html
+2. Run `$ npm install` to install dependencies and ensure React Native are up to date.
 
 **Note:**
 
@@ -117,7 +118,7 @@ Run `$ npm install` to install dependencies and ensure React Native are up to da
 	- `$ npm run android:logcat`
 	- Check the log for abnormal app termination. Device must be under the same network as computer.
 
-####Commands
+#### Commands
 
 ```bash
 $ npm start
