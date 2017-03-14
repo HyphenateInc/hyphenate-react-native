@@ -1,4 +1,4 @@
-# React Native and Strophe
+# React Native
 
 ## Content
 
@@ -36,52 +36,46 @@ Current version **v0.2.0 @ 2017-01-03**
 
 ## Get Started
 
-### Initialization
-> Need to run the following steps for new items, you can skip it if directory is updated
+### Compile and Run
 
-1. **Initialization `$ npm run newclear`. Only need to run once for iOS and Android**
-2. **Go to librares and find: `1RCTNetwork.xcodeproj / RCTNetworking.mm / RCTGenerateFormBoundary1` -> remove special characters / . **
-   - due to the constrain of uploading file REST server, cannot have special character for content-type
-3. Run `npm install` to install dependencies and ensure React native is up to date.
+Run `$ npm install` to install dependencies and ensure React Native are up to date.
 
 **Note:**
 
-1. Install the latest vesion of npm with command `npm install npm@latest -g`
-2. Install yarn by running command `npm install -g yarnpkg@0.15.1`
-
-#### node_modules error
-Run `npm run newclear` under root directory, this will generate node_modules, which are dependencies to run the app
-
-
-- Go to librares and find `RCTNetwork.xcodeproj / RCTNetworking.mm / RCTGenerateFormBoundary -> remove character`/ . 
-   - or modify `node_modules/react-native/Libraries/Network/RCTNetworking.mm`
-   - due to the constrain of uploading file REST server, cannot have special character for content-type
-
-### Compile and Run
-
-1. **Compile debug version of the app if no signature in place, release version require signature to run**
-2. **0.2.0 version. Please see package.json -> version property for updated version**
-3. **0.2.0 version rely on updated module, please run `npm install` first**
-4. **Clean the buffer after installation**
+1. Install the latest vesion of npm by running `$ npm install npm@latest -g`
+2. Install yarn by running command `$ npm install -g yarnpkg@0.15.1`
+3. Run `$ npm run newclear` if encountering library dependency (node_modules) errors, which triggers commands `rm -rf $TMPDIR/react-* && watchman watch-del-all && rm -rf ios/build/ModuleCache/* && rm -rf node_modules/ && npm cache clean && npm i'.
+4. Clean the buffer after installation**
   - `npm run clean`
   - Open Xcode: select product -> clean
   - Please close the terminal if open there's one currently open
-5. Compile
+
+- Compile debug version of the app if no signature in place, release version require signature to run
+- Update app version. Go to package.json -> `version` key
+
+### IDEs
+
+#### WebStorm on Mac
+
+1. Add project: File -> New -> Project -> select "React Native" -> select project file location -> pop up "Create Project" The directory {file path} is not empty. Would you like to create a project from existing sources instead? -> select "Yes"
+2. Open the app "Terminal" -> Run `$ npm install` to install dependencies
+3. Add simulator: select "Run" tab -> "Edit Configurations" -> click "+" sign -> select "React Native" -> select "Target platform", either Android or iOS -> click "OK"
+4. select "Run" tab -> click "Run"
 
 
-### Android 
+#### Android 
 
 1. Basic installation environment iOS and Android https://facebook.github.io/react-native/docs/getting-started.html
-	- `$ brew install android-sdk`
 
-	```bash
-		// zshrc depending on your dependencies
-		export ANDROID_HOME=~/Library/Android/sdk
-		export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
-		export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home/
-		// remember this!
-		source .zshrc
-	```
+- `$ brew install android-sdk`
+```bash
+	// zshrc depending on your dependencies
+	export ANDROID_HOME=~/Library/Android/sdk
+	export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+	export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home/
+	// remember this!
+	source .zshrc
+```
 
 2. Emulator and SDK installation https://developer.android.com/studio/run/managing-avds.html
 	- react-native support api minimal 16
@@ -149,14 +143,13 @@ A: Remove image file, rebuild it, then run it again
 
 ##### Q: Have trouble installing on physical device
 A: Try remove the installed app first, the reinstall
-
 - https://github.com/facebook/react-native/issues/2720
 
 ##### Q: Object.freeze can only be called on Object 
 A: `ctrl+m` to open controller, the select `Debug JS Remotely`
 
 
-### iOS 
+#### iOS 
 
 1. Basic installation environment iOS and Android https://facebook.github.io/react-native/docs/getting-started.html
 
@@ -202,7 +195,7 @@ $ react-native run-ios
 $ react-native bundle --dev false --platform ios --entry-file ./index.ios.js --bundle-output ./ios/app/main.jsbundle
 ```
 
-#### iOS potentiall issues
+#### iOS issues
 
 ##### Q：Notes
 - Close controller between switch to debug or release
@@ -261,7 +254,7 @@ click done, done
 
 ## Redux State
 
-```js
+```javascript
 {
 	// UI related
 	ui: [
@@ -317,7 +310,7 @@ click done, done
 }
 ```
 
-## TODOs
+## Features coming soon
 
 - https issue
 - splash screen
@@ -327,7 +320,7 @@ click done, done
 - full loading
 
 ## SDK 
-> React-native SDK is modified due to different browser environment from web SDK. Web SDK is not suitable for direct use under react-native environment, please refer the following steps for react-native SDK integration.
+> React-native SDK is modified due to different browser environment from Hyphenate web SDK. Hyphenate web SDK is not suitable for direct use under react-native environment, please refer the following steps for react-native SDK integration.
 
 ### How to integrate?
 1. Copy App/Lib/WebIM.js and App/Lib/WebIMConfig.js
@@ -370,7 +363,7 @@ click done, done
 2. copy App/Sdk directory
 3. install dependencies for xmldom  `npm install --save xmldom`
 4. replace with customized http module
-3. API is the same [web SDK](http://docs.hyphenate.io/docs/web-install-sdk)
+3. API is the same [Hyphenate web SDK](http://docs.hyphenate.io/docs/web-install-sdk)
 
 Demo example: Containers/App.js, listen to XMPP event（currently using redux, you can customize it depending on the framework and method of data processing)
 
