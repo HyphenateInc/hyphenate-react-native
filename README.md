@@ -3,19 +3,19 @@
 ## Content
 
 1. [Version Support](#version-support)
-1. [Version log](#version-log)
-1. [Start](#start)
-   1. [initialization](#initialization) 
-   1. [notes](#notes)
+2. [Version log](#version-log)
+3. [Start](#start)
+   1. [Getting Started](#getting-started) 
+   2. [notes](#notes)
       - [node_modules](#node_modules)
-   1. [Android debug and release](#android-debug-and-release)
+   3. [Android](#android-debug-and-release)
       - [Android potential issues](#android-potential-issues)
-   1. [iOS debug and release](#ios-debug-and-release)
+   4. [iOS](#ios-debug-and-release)
       - [iOS potential issues](#ios-potential-issues)
-1. [Content structure](#content-structure)
-1. [Redux State](#redux-state)
-1. [Todo](#todo)
-1. [SDK integration](#sdk)
+4. [Content structure](#content-structure)
+5. [Redux State](#redux-state)
+6. [Features coming soon](#features-coming-soon)
+7. [Hyphenate Web SDK](#hyphenate-web-sdk)
       
 ## Version Support
 
@@ -34,7 +34,7 @@ Current version **v0.2.0 @ 2017-01-03**
 
 
 
-## Get Started
+## Getting Started
 
 ### Setup React Native Environment
 
@@ -255,6 +255,8 @@ click done, done
 
 
 ## Redux State
+
+Redux is a predictable state container for JavaScript apps. [Learn more](http://redux.js.org/)
 
 ```javascript
 {
