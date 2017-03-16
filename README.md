@@ -2,9 +2,8 @@
 
 ## Content
 
-1. [Version Support](#version-support)
-2. [Version log](#version-log)
-3. [Start](#start)
+
+1. [Start](#start)
    1. [Getting Started](#getting-started) 
    2. [notes](#notes)
       - [node_modules](#node_modules)
@@ -12,34 +11,33 @@
       - [Android potential issues](#android-potential-issues)
    4. [iOS](#ios-debug-and-release)
       - [iOS potential issues](#ios-potential-issues)
-4. [Content structure](#content-structure)
-5. [Redux State](#redux-state)
-6. [Features coming soon](#features-coming-soon)
-7. [Hyphenate Web SDK](#hyphenate-web-sdk)
-      
-## Version Support
-
-iOS >= 9.0
-Android >= 4.1 (API 16)
-
-Note: Development and testing environment is base on Mac.
-
-
-
-## Version log
-
-Current version **v0.2.0 @ 2017-01-03**
-
-**[CHANGE LOG](./CHANGELOG.md)**
-
+2. [Content structure](#content-structure)
+3. [Redux State](#redux-state)
+4. [Features coming soon](#features-coming-soon)
+5. [Hyphenate Web SDK](#hyphenate-web-sdk)
+6. [Version Support](#version-support)
+7. [Version log](#version-log)
 
 
 ## Getting Started
 
 ### Setup React Native Environment
 
-1. Set up React Native environment https://facebook.github.io/react-native/docs/getting-started.html
-2. Run `$ npm install` to install dependencies and ensure React Native are up to date.
+Set up React Native environment [React Native](https://facebook.github.io/react-native/docs/getting-started.html)
+
+### Setup
+
+1. Clone the repo
+```
+$ git clone https://github.com/HyphenateInc/hyphenate-react-native.git
+$ cd hyphenate-react-native
+```
+
+2. Install dependencies 
+
+```
+$ npm install
+```
 
 **Note:**
 
@@ -52,7 +50,6 @@ Current version **v0.2.0 @ 2017-01-03**
   - Please close the terminal if open there's one currently open
 
 - Compile debug version of the app if no signature in place, release version require signature to run
-- Update app version. Go to package.json -> `version` key
 
 ### IDEs
 
@@ -390,3 +387,19 @@ WebIM.conn.listen({
   },
   ...
 ```
+
+
+## Version Support
+
+iOS >= 9.0
+Android >= 4.1 (API 16)
+
+Note: Development and testing environment is base on Mac.
+
+
+
+## Version log
+
+Current version **v0.2.0 @ 2017-01-03**
+
+**[CHANGE LOG](./CHANGELOG.md)**
