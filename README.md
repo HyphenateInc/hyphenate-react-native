@@ -23,7 +23,9 @@
 
 ### Setup React Native Environment
 
-Set up React Native environment [React Native](https://facebook.github.io/react-native/docs/getting-started.html)
+Set up React Native environment 
+* [React Native - Getting Started](https://facebook.github.io/react-native/docs/getting-started.html)
+* [Installation](https://facebook.github.io/react/docs/installation.html)
 
 ### Setup
 
