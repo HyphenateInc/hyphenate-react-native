@@ -1,11 +1,25 @@
-# Created by .ignore support plugin (hsz.mobi)
+# OSX
+#
+.DS_Store
 
-.gitignore
-node_modules
-.idea/inspectionProfiles/
-/npm-debug.log
-ios/build/
-ios/app.xcodeproj/project.xcworkspace/xcuserdata/
-ios/app.xcodeproj/xcuserdata/
-ios/build/Build/Intermediates/AirMaps.build/Debug-iphonesimulator/AirMaps.build/dgph
-ios/build/Logs/
+# Xcode
+#
+build/
+xcuserdata
+*.xccheckout
+DerivedData
+*.ipa
+*.xcuserstate
+project.xcworkspace
+
+# Android/IJ
+#
+.idea
+.gradle
+local.properties
+*.iml
+
+# node.js
+#
+node_modules/
+npm-debug.log
