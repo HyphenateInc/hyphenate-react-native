@@ -130,93 +130,91 @@ class LoginScreen extends React.Component {
 
         if (Platform.OS == 'android') {
             otherView = [
-              <TouchableOpacity key='sign-in' style={Styles.loginButtonWrapper} onPress={this.handlePressLogin}>
-                <Text style={Styles.loginText}>{I18n.t('signIn')}</Text>
-              </TouchableOpacity>
-                ,
-              <View key='tips' style={[Styles.loginRow, Styles.tipRow]}>
-                <Text style={Styles.tips}>{I18n.t('signUpTips')}</Text>
-                <TouchableOpacity style={Styles.tipsButtonWrapper} onPress={NavigationActions.register}>
-                  <Text style={[Styles.loginText, Styles.signUpText]}>{I18n.t('signUp')}</Text>
+                <TouchableOpacity key='sign-in' style={Styles.loginButtonWrapper} onPress={this.handlePressLogin}>
+                    <Text style={Styles.loginText}>{I18n.t('signIn')}</Text>
                 </TouchableOpacity>
-              </View>
+                ,
+                <View key='tips' style={[Styles.loginRow, Styles.tipRow]}>
+                    <Text style={Styles.tips}>{I18n.t('signUpTips')}</Text>
+                    <TouchableOpacity style={Styles.tipsButtonWrapper} onPress={NavigationActions.register}>
+                        <Text style={[Styles.loginText, Styles.signUpText]}>{I18n.t('signUp')}</Text>
+                    </TouchableOpacity>
+                </View>
             ]
         }
 
         if (Platform.OS == 'ios') {
             otherView = [
-              <View key='tips' style={[Styles.loginRow, Styles.tipRow]}>
-                <Text style={Styles.tips}>{I18n.t('signUpTips')}</Text>
-                <TouchableOpacity style={Styles.tipsButtonWrapper} onPress={NavigationActions.register}>
-                  <Text style={[Styles.loginText, Styles.signUpText]}>{I18n.t('signUp')}</Text>
-                </TouchableOpacity>
-              </View>
+                <View key='tips' style={[Styles.loginRow, Styles.tipRow]}>
+                    <Text style={Styles.tips}>{I18n.t('signUpTips')}</Text>
+                    <TouchableOpacity style={Styles.tipsButtonWrapper} onPress={NavigationActions.register}>
+                        <Text style={[Styles.loginText, Styles.signUpText]}>{I18n.t('signUp')}</Text>
+                    </TouchableOpacity>
+                </View>
             ]
         }
 
         return (
             <View style={{flexDirection: 'column', height: this.state.visibleHeight}}>
-              <ScrollView contentContainerStyle={{justifyContent: 'center'}}
-                          style={[Styles.container, this.state.topLogo]}
-                          keyboardShouldPersistTaps>
-                <Image source={Images.logo} style={[Styles.topLogo]}/>
-                <View style={Styles.form}>
-                  <View style={[Styles.row, Styles.borderBottom]}>
-                    <TextInput
-                        ref='username'
-                        style={textInputStyle}
-                        value={username}
-                        editable={editable}
-                        keyboardType='default'
-                        returnKeyType='next'
-                        autoCapitalize='none'
-                        autoCorrect={false}
-                        onChangeText={this.handleChangeUsername}
-                        underlineColorAndroid='transparent'
-                        onSubmitEditing={() => this.refs.password.focus()}
-                        placeholder={I18n.t('username')}
-                        placeholderTextColor={Styles.placeholderTextColor}
-                        selectionColor={Styles.selectionColor}
-                    />
-                  </View>
+                <ScrollView contentContainerStyle={{justifyContent: 'center'}}
+                            style={[Styles.container, this.state.topLogo]}
+                            keyboardShouldPersistTaps>
+                    <Image source={Images.logo} style={[Styles.topLogo]}/>
+                    <View style={Styles.form}>
+                        <View style={[Styles.row, Styles.borderBottom]}>
+                            <TextInput
+                                ref='username'
+                                style={textInputStyle}
+                                value={username}
+                                editable={editable}
+                                keyboardType='default'
+                                returnKeyType='next'
+                                autoCapitalize='none'
+                                autoCorrect={false}
+                                onChangeText={this.handleChangeUsername}
+                                underlineColorAndroid='transparent'
+                                onSubmitEditing={() => this.refs.password.focus()}
+                                placeholder={I18n.t('username')}
+                                placeholderTextColor={Styles.placeholderTextColor}
+                                selectionColor={Styles.selectionColor}
+                            />
+                        </View>
 
-                  <View style={[Styles.row, Styles.borderRadius]}>
-                    <TextInput
-                        ref='password'
-                        style={textInputStyle}
-                        value={password}
-                        editable={editable}
-                        keyboardType='default'
-                        returnKeyType='go'
-                        autoCapitalize='none'
-                        autoCorrect={false}
-                        secureTextEntry
-                        onChangeText={this.handleChangePassword}
-                        underlineColorAndroid='transparent'
-                        onSubmitEditing={this.handlePressLogin}
-                        placeholder={I18n.t('password')}
-                        placeholderTextColor={Styles.plachholder}
-                        selectionColor={Styles.selectionColor}
-                    />
-                  </View>
+                        <View style={[Styles.row, Styles.borderRadius]}>
+                            <TextInput
+                                ref='password'
+                                style={textInputStyle}
+                                value={password}
+                                editable={editable}
+                                keyboardType='default'
+                                returnKeyType='go'
+                                autoCapitalize='none'
+                                autoCorrect={false}
+                                secureTextEntry
+                                onChangeText={this.handleChangePassword}
+                                underlineColorAndroid='transparent'
+                                onSubmitEditing={this.handlePressLogin}
+                                placeholder={I18n.t('password')}
+                                placeholderTextColor={Styles.plachholder}
+                                selectionColor={Styles.selectionColor}
+                            />
+                        </View>
 
-                    {otherView}
-                </View>
-              </ScrollView>
+                        {otherView}
+                    </View>
+                </ScrollView>
 
                 {
                     (Platform.OS == 'ios') ?
                         (
                             <TouchableOpacity style={Styles.loginButtonWrapper} onPress={this.handlePressLogin}>
-                              <Text style={Styles.loginText}>{I18n.t('signIn')}</Text>
+                                <Text style={Styles.loginText}>{I18n.t('signIn')}</Text>
                             </TouchableOpacity>
                         ) : null
                 }
             </View>
-
         )
     }
-
 }
 
 const mapStateToProps = (state) => {

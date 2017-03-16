@@ -2,8 +2,8 @@
 
 import React, {Component} from 'react'
 import {
-  View,
-  ActivityIndicator
+    View,
+    ActivityIndicator
 } from 'react-native'
 import {connect} from 'react-redux'
 
@@ -14,89 +14,88 @@ import {connect} from 'react-redux'
 
 class LoadingContent extends Component {
 
-  constructor(props) {
-    super(props);
-    // set state with passed in props
-    this.state = {
-      message: props.error,
-      hide: props.hide,
-    };
-    // bind functions
-    this.dismissModal = this.dismissModal.bind(this)
-  }
+    constructor(props) {
+        super(props);
+        // set state with passed in props
+        this.state = {
+            message: props.error,
+            hide: props.hide,
+        };
+        // bind functions
+        this.dismissModal = this.dismissModal.bind(this)
+    }
 
-  dismissModal() {
-    this.setState({hide: true})
-  }
+    dismissModal() {
+        this.setState({hide: true})
+    }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
-  }
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps)
+    }
 
-  componentDidMount() {
-    // BackAndroid.addEventListener('hardwareBackPress', () => {
-    //   if (this.context.drawer.props.open) {
-    //     this.toggleDrawer()
-    //     return true
-    //   }
-    //   return false
-    // })
-    // TODO: stop loading if no notification after 10 sec to avoid blocking the user interaction
-  }
+    componentDidMount() {
+        // BackAndroid.addEventListener('hardwareBackPress', () => {
+        //   if (this.context.drawer.props.open) {
+        //     this.toggleDrawer()
+        //     return true
+        //   }
+        //   return false
+        // })
+        // TODO: stop loading if no notification after 10 sec to avoid blocking the user interaction
+    }
 
-  componentDidUpdate() {
-    setTimeout(() => {
-      console.log('setTimeout', this.context.drawer.props);
-      if (this.context.drawer.props.open) {
-        this.toggleDrawer();
-        return true
-      }
-    }, 2000)
-  }
+    componentDidUpdate() {
+        setTimeout(() => {
+            console.log('setTimeout', this.context.drawer.props);
+            if (this.context.drawer.props.open) {
+                this.toggleDrawer();
+                return true
+            }
+        }, 2000)
+    }
 
-  toggleDrawer() {
-    this.context.drawer.toggle()
-  }
+    toggleDrawer() {
+        this.context.drawer.toggle()
+    }
 
-
-  render() {
-    // if(this.props.hide) {
-    //   return null
-    // }
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent'}}>
-        <View style={{
-          width: 70,
-          height: 70,
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: '#000',
-          borderRadius: 10
-        }}>
-          <ActivityIndicator
-            animating={true}
-            style={{}}
-            color="#fff"
-            size="large"
-          />
-        </View>
-      </View>
-    )
-  }
+    render() {
+        // if(this.props.hide) {
+        //   return null
+        // }
+        return (
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent'}}>
+              <View style={{
+                  width: 70,
+                  height: 70,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  backgroundColor: '#000',
+                  borderRadius: 10
+              }}>
+                <ActivityIndicator
+                    animating={true}
+                    style={{}}
+                    color="#fff"
+                    size="large"
+                />
+              </View>
+            </View>
+        )
+    }
 }
 
 LoadingContent.contextTypes = {
-  drawer: React.PropTypes.object
+    drawer: React.PropTypes.object
 };
 
 const mapStateToProps = (state) => {
-  return {
-    hide: !state.ui.common.fetching,
-  }
+    return {
+        hide: !state.ui.common.fetching,
+    }
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+    return {}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoadingContent)

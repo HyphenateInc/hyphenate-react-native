@@ -318,7 +318,7 @@ Redux is a predictable state container for JavaScript apps. [Learn more](http://
 
 - https issue
 - splash screen
-- hot reloading
+- [hot reloading](https://facebook.github.io/react-native/blog/2016/03/24/introducing-hot-reloading.html)
 - local storage
 - Chat optimization, limit the queue length and message pagination
 - full loading

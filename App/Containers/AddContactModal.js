@@ -57,7 +57,6 @@ class AddContactModal extends Component {
     })
   };
 
-
   handleAddContact(id) {
     // TODO: already friend
     // TODO: friend request sent
@@ -113,7 +112,6 @@ class AddContactModal extends Component {
     )
   }
 }
-
 
 AddContactModal.propTypes = {
   user: PropTypes.string

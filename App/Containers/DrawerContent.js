@@ -9,75 +9,74 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 
 class DrawerContent extends Component {
 
-  componentDidMount() {
-    // BackAndroid.addEventListener('hardwareBackPress', () => {
-    //   if (this.context.drawer.props.open) {
-    //     this.toggleDrawer()
-    //     return true
-    //   }
-    //   return false
-    // })
-    setTimeout(() => {
-      console.log('setTimeout', this.context.drawer.props);
-      if (this.context.drawer.props.open) {
+    componentDidMount() {
+        // BackAndroid.addEventListener('hardwareBackPress', () => {
+        //   if (this.context.drawer.props.open) {
+        //     this.toggleDrawer()
+        //     return true
+        //   }
+        //   return false
+        // })
+        setTimeout(() => {
+            console.log('setTimeout', this.context.drawer.props);
+            if (this.context.drawer.props.open) {
+                this.toggleDrawer();
+                return true
+            }
+        }, 5000)
+    }
+
+    toggleDrawer() {
+        this.context.drawer.toggle()
+    }
+
+    handlePressComponents = () => {
         this.toggleDrawer();
-        return true
-      }
-    }, 5000)
-  }
+        NavigationActions.componentExamples()
+    };
 
-  toggleDrawer() {
-    this.context.drawer.toggle()
-  }
+    handlePressUsage = () => {
+        this.toggleDrawer();
+        NavigationActions.usageExamples()
+    };
 
-  handlePressComponents = () => {
-    this.toggleDrawer();
-    NavigationActions.componentExamples()
-  };
+    handlePressAPI = () => {
+        this.toggleDrawer();
+        NavigationActions.apiTesting()
+    };
 
-  handlePressUsage = () => {
-    this.toggleDrawer();
-    NavigationActions.usageExamples()
-  };
+    handlePressTheme = () => {
+        this.toggleDrawer();
+        NavigationActions.theme()
+    };
 
-  handlePressAPI = () => {
-    this.toggleDrawer();
-    NavigationActions.apiTesting()
-  };
+    handlePressDevice = () => {
+        this.toggleDrawer();
+        NavigationActions.deviceInfo()
+    };
 
-  handlePressTheme = () => {
-    this.toggleDrawer();
-    NavigationActions.theme()
-  };
+    handleLogin = () => {
+        this.toggleDrawer();
+        NavigationActions.login()
+    };
 
-  handlePressDevice = () => {
-    this.toggleDrawer();
-    NavigationActions.deviceInfo()
-  };
-
-  handleLogin = () => {
-    this.toggleDrawer();
-    NavigationActions.login()
-  };
-
-  render() {
-    return (
-      <ScrollView style={styles.container}>
-        <Image source={Images.logo} style={styles.logo}/>
-        <DrawerButton text='Component Examples' onPress={this.handlePressComponents}/>
-        <DrawerButton text='Usage Examples' onPress={this.handlePressUsage}/>
-        <DrawerButton text='API Testing' onPress={this.handlePressAPI}/>
-        <DrawerButton text='Themes' onPress={this.handlePressTheme}/>
-        <DrawerButton text='Device Info' onPress={this.handlePressDevice}/>
-        <DrawerButton text='Login' onPress={this.handleLogin}/>
-      </ScrollView>
-    )
-  }
-
+    render() {
+        return (
+            <ScrollView style={styles.container}>
+              <Image source={Images.logo} style={styles.logo}/>
+              <DrawerButton text='Component Examples' onPress={this.handlePressComponents}/>
+              <DrawerButton text='Usage Examples' onPress={this.handlePressUsage}/>
+              <DrawerButton text='API Testing' onPress={this.handlePressAPI}/>
+              <DrawerButton text='Themes' onPress={this.handlePressTheme}/>
+              <DrawerButton text='Device Info' onPress={this.handlePressDevice}/>
+              <DrawerButton text='Login' onPress={this.handleLogin}/>
+            </ScrollView>
+        )
+    }
 }
 
 DrawerContent.contextTypes = {
-  drawer: React.PropTypes.object
+    drawer: React.PropTypes.object
 };
 
 export default DrawerContent

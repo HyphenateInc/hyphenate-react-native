@@ -15,31 +15,31 @@ import styles from './Styles/RootContainerStyle'
 
 class RootContainer extends Component {
 
-  componentDidMount () {
-    // if redux persist is not active fire startup action
-    if (!ReduxPersist.active) {
-      this.props.startup()
+    componentDidMount () {
+        // if redux persist is not active fire startup action
+        if (!ReduxPersist.active) {
+            this.props.startup()
+        }
     }
-  }
 
-  componentWillReceiveProps (nextProps) {
-    console.log('componentWillReceiveProps', nextProps)
-  }
+    componentWillReceiveProps (nextProps) {
+        console.log('componentWillReceiveProps', nextProps)
+    }
 
-  render () {
-    return (
-      <View style={styles.applicationView}>
-        {/*  barStyle='light-content' */}
-        <StatusBar />
-        <NavigationRouter />
-      </View>
-    )
-  }
+    render () {
+        return (
+            <View style={styles.applicationView}>
+                {/*  barStyle='light-content' */}
+              <StatusBar />
+              <NavigationRouter />
+            </View>
+        )
+    }
 }
 
 const mapStateToDispatch = (dispatch) => ({
-  startup: () => dispatch(StartupActions.startup())
-  // dispatch: dispatch
+    startup: () => dispatch(StartupActions.startup())
+    // dispatch: dispatch
 });
 
 export default connect(null, mapStateToDispatch)(RootContainer)

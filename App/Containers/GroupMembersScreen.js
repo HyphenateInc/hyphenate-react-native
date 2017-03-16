@@ -17,7 +17,6 @@ import GroupMemberActions from '../Redux/GroupMemberRedux'
 class GroupMembersScreen extends Component {
 
   // ------------ init -------------
-
   constructor(props) {
     super(props)
   }
@@ -36,7 +35,6 @@ class GroupMembersScreen extends Component {
   }
 
   // ------------ renders -------------
-
   _renderRow(rowData, sectionId, rowID, highlightRow) {
     return (
       <TouchableOpacity onPress={() => {
@@ -82,7 +80,6 @@ class GroupMembersScreen extends Component {
     )
   }
 }
-
 
 GroupMembersScreen.propTypes = {
   group: PropTypes.object,
