@@ -318,7 +318,7 @@ Redux is a predictable state container for JavaScript apps. [Learn more](http://
 
 - https issue
 - splash screen
-- hot loading
+- hot reloading
 - local storage
 - Chat optimization, limit the queue length and message pagination
 - full loading
@@ -326,10 +326,10 @@ Redux is a predictable state container for JavaScript apps. [Learn more](http://
 
 
 ## Hyphenate Web SDK 
-> React-native SDK is modified due to different browser environment from Hyphenate web SDK. Hyphenate web SDK is not suitable for direct use under react-native environment, please refer the following steps for react-native SDK integration.
+React Native SDK is modified due to different browser environment from [Hyphenate web SDK](http://docs.hyphenate.io/docs/web-install-sdk). Hyphenate web SDK is not suitable for direct use under react-native environment, please refer the following steps for React Native SDK integration.
 
 ### Integration
-1. Copy App/Lib/WebIM.js and App/Lib/WebIMConfig.js
+1. Copy `App/Lib/WebIM.js` and `App/Lib/WebIMConfig.js`
  
   WebIM.js
 
@@ -367,11 +367,9 @@ Redux is a predictable state container for JavaScript apps. [Learn more](http://
   ```
 
 2. copy App/Sdk directory
-3. install dependencies for xmldom  `npm install --save xmldom`
+3. install dependencies for xmldom  `$ npm install --save xmldom`
 4. replace with customized http module
-3. API is the same [Hyphenate web SDK](http://docs.hyphenate.io/docs/web-install-sdk)
-
-- Demo example: Containers/App.js, listen to XMPP event（currently using redux, you can customize it depending on the framework and method of data processing)
+5. Demo example: App/Containers/App.js, listen to XMPP event（currently using Redux, you can customize it depending on the framework and method of data processing)
 
 ```js
 WebIM.conn.listen({
