@@ -1,9 +1,8 @@
-;
 (function () {
     var EMPTYFN = function () {
     }
-    var _code = require('./status').code
-    var WEBIM_FILESIZE_LIMIT = 10485760
+    var _code = require('./status').code;
+    var WEBIM_FILESIZE_LIMIT = 10485760;
 
     var _createStandardXHR = function () {
         try {
@@ -11,7 +10,7 @@
         } catch (e) {
             return false
         }
-    }
+    };
 
     var _createActiveXHR = function () {
         try {
@@ -19,11 +18,11 @@
         } catch (e) {
             return false
         }
-    }
+    };
 
     var _xmlrequest = function (crossDomain) {
-        crossDomain = crossDomain || true
-        var temp = _createStandardXHR() || _createActiveXHR()
+        crossDomain = crossDomain || true;
+        var temp = _createStandardXHR() || _createActiveXHR();
 
         if ('withCredentials' in temp) {
             return temp
@@ -34,28 +33,28 @@
         if (typeof window.XDomainRequest === 'undefined') {
             return temp
         }
-        var xhr = new XDomainRequest()
-        xhr.readyState = 0
-        xhr.status = 100
-        xhr.onreadystatechange = EMPTYFN
+        var xhr = new XDomainRequest();
+        xhr.readyState = 0;
+        xhr.status = 100;
+        xhr.onreadystatechange = EMPTYFN;
         xhr.onload = function () {
-            xhr.readyState = 4
-            xhr.status = 200
+            xhr.readyState = 4;
+            xhr.status = 200;
 
-            var xmlDoc = new ActiveXObject('Microsoft.XMLDOM')
-            xmlDoc.async = 'false'
-            xmlDoc.loadXML(xhr.responseText)
+            var xmlDoc = new ActiveXObject('Microsoft.XMLDOM');
+            xmlDoc.async = 'false';
+            xmlDoc.loadXML(xhr.responseText);
             xhr.responseXML = xmlDoc
-            xhr.response = xhr.responseText
+            xhr.response = xhr.responseText;
             xhr.onreadystatechange()
-        }
+        };
         xhr.ontimeout = xhr.onerror = function () {
-            xhr.readyState = 4
-            xhr.status = 500
+            xhr.readyState = 4;
+            xhr.status = 500;
             xhr.onreadystatechange()
-        }
+        };
         return xhr
-    }
+    };
 
     var _hasFlash = (function () {
         if ('ActiveXObject' in window) {
@@ -70,7 +69,7 @@
             }
         }
         return 0
-    }())
+    }());
 
     var _tmpUtilXHR = _xmlrequest(),
         _hasFormData = typeof FormData !== 'undefined',
@@ -79,11 +78,11 @@
         _hasOverrideMimeType = _tmpUtilXHR.overrideMimeType || false,
         _isCanUploadFileAsync = _isCanSetRequestHeader && _hasFormData,
         _isCanUploadFile = _isCanUploadFileAsync || _hasFlash,
-        _isCanDownLoadFile = _isCanSetRequestHeader && (_hasBlob || _hasOverrideMimeType)
+        _isCanDownLoadFile = _isCanSetRequestHeader && (_hasBlob || _hasOverrideMimeType);
 
     if (!Object.keys) {
         Object.keys = (function () {
-            'use strict'
+            'use strict';
             var hasOwnProperty = Object.prototype.hasOwnProperty,
                 hasDontEnumBug = !({toString: null}).propertyIsEnumerable('toString'),
                 dontEnums = [
@@ -95,14 +94,14 @@
                     'propertyIsEnumerable',
                     'constructor'
                 ],
-                dontEnumsLength = dontEnums.length
+                dontEnumsLength = dontEnums.length;
 
             return function (obj) {
                 if (typeof obj !== 'object' && (typeof obj !== 'function' || obj === null)) {
                     throw new TypeError('Object.keys called on non-object')
                 }
 
-                var result = [], prop, i
+                var result = [], prop, i;
 
                 for (prop in obj) {
                     if (hasOwnProperty.call(obj, prop)) {
@@ -152,7 +151,7 @@
                 return false
             }
 
-            var ua = window.navigator.userAgent
+            var ua = window.navigator.userAgent;
             for (var i = 0, l = notSupportList.length; i < l; i++) {
                 if (notSupportList[i].test(ua)) {
                     return false
@@ -165,12 +164,12 @@
             return null;
             var ua = navigator.userAgent, matches, tridentMap = {'4': 8, '5': 9, '6': 10, '7': 11}
 
-            matches = ua.match(/MSIE (\d+)/i)
+            matches = ua.match(/MSIE (\d+)/i);
 
             if (matches && matches[1]) {
                 return +matches[1]
             }
-            matches = ua.match(/Trident\/(\d+)/i)
+            matches = ua.match(/Trident\/(\d+)/i);
             if (matches && matches[1]) {
                 return tridentMap[matches[1]] || null
             }
@@ -182,13 +181,13 @@
                 return JSON.stringify(json)
             } else {
                 var s = '',
-                    arr = []
+                    arr = [];
 
                 var iterate = function (json) {
-                    var isArr = false
+                    var isArr = false;
 
                     if (Object.prototype.toString.call(json) === '[object Array]') {
-                        arr.push(']', '[')
+                        arr.push(']', '[');
                         isArr = true
                     } else if (Object.prototype.toString.call(json) === '[object Object]') {
                         arr.push('}', '{')
@@ -213,81 +212,81 @@
                     }
 
                     return arr.pop() + s + arr.pop()
-                }
+                };
                 return iterate(json)
             }
         },
         registerUser: function (options) {
-            var orgName = options.orgName || ''
-            var appName = options.appName || ''
-            var appKey = options.appKey || ''
-            var suc = options.success || EMPTYFN
-            var err = options.error || EMPTYFN
+            var orgName = options.orgName || '';
+            var appName = options.appName || '';
+            var appKey = options.appKey || '';
+            var suc = options.success || EMPTYFN;
+            var err = options.error || EMPTYFN;
 
             if (!orgName && !appName && appKey) {
-                var devInfos = appKey.split('#')
+                var devInfos = appKey.split('#');
                 if (devInfos.length === 2) {
-                    orgName = devInfos[0]
+                    orgName = devInfos[0];
                     appName = devInfos[1]
                 }
             }
             if (!orgName && !appName) {
                 err({
                     type: _code.WEBIM_CONNCTION_APPKEY_NOT_ASSIGN_ERROR
-                })
+                });
                 return
             }
 
-            var https = options.https || https
-            var apiUrl = options.apiUrl
-            var restUrl = apiUrl + '/' + orgName + '/' + appName + '/users'
+            var https = options.https || https;
+            var apiUrl = options.apiUrl;
+            var restUrl = apiUrl + '/' + orgName + '/' + appName + '/users';
 
             var userjson = {
                 username: options.username,
                 password: options.password,
                 nickname: options.nickname || ''
-            }
+            };
 
-            var userinfo = utils.stringify(userjson)
+            var userinfo = utils.stringify(userjson);
             var options = {
                 url: restUrl,
                 dataType: 'json',
                 data: userinfo,
                 success: suc,
                 error: err
-            }
+            };
             return utils.ajax(options)
         },
         login: function (options) {
-            var options = options || {}
-            var suc = options.success || EMPTYFN
-            var err = options.error || EMPTYFN
-            var headers = options.headers || null
+            var options = options || {};
+            var suc = options.success || EMPTYFN;
+            var err = options.error || EMPTYFN;
+            var headers = options.headers || null;
 
-            var appKey = options.appKey || ''
-            var devInfos = appKey.split('#')
+            var appKey = options.appKey || '';
+            var devInfos = appKey.split('#');
             if (devInfos.length !== 2) {
                 err({
                     type: _code.WEBIM_CONNCTION_APPKEY_NOT_ASSIGN_ERROR
-                })
+                });
                 return false
             }
 
-            var orgName = devInfos[0]
-            var appName = devInfos[1]
-            var https = https || options.https
-            var user = options.user || ''
-            var pwd = options.pwd || ''
+            var orgName = devInfos[0];
+            var appName = devInfos[1];
+            var https = https || options.https;
+            var user = options.user || '';
+            var pwd = options.pwd || '';
 
-            var apiUrl = options.apiUrl
+            var apiUrl = options.apiUrl;
 
             var loginJson = {
                 grant_type: 'password',
                 username: user,
                 password: pwd,
                 timestamp: +new Date()
-            }
-            var loginfo = utils.stringify(loginJson)
+            };
+            var loginfo = utils.stringify(loginJson);
 
             var options = {
                 url: apiUrl + '/' + orgName + '/' + appName + '/token',
@@ -296,7 +295,7 @@
                 headers: headers,
                 success: suc,
                 error: err
-            }
+            };
             return utils.ajax(options)
         },
 
@@ -306,7 +305,7 @@
                 filename: '',
                 filetype: '',
                 data: ''
-            }
+            };
 
             var fileObj = typeof fileInputId === 'string' ? document.getElementById(fileInputId) : fileInputId
 
@@ -315,19 +314,19 @@
             }
             try {
                 if (window.URL.createObjectURL) {
-                    var fileItems = fileObj.files
+                    var fileItems = fileObj.files;
                     if (fileItems.length > 0) {
-                        var u = fileItems.item(0)
-                        uri.data = u
-                        uri.url = window.URL.createObjectURL(u)
+                        var u = fileItems.item(0);
+                        uri.data = u;
+                        uri.url = window.URL.createObjectURL(u);
                         uri.filename = u.name || ''
                     }
                 } else { // IE
-                    var u = document.getElementById(fileInputId).value
-                    uri.url = u
-                    var pos1 = u.lastIndexOf('/')
-                    var pos2 = u.lastIndexOf('\\')
-                    var pos = Math.max(pos1, pos2)
+                    var u = document.getElementById(fileInputId).value;
+                    uri.url = u;
+                    var pos1 = u.lastIndexOf('/');
+                    var pos2 = u.lastIndexOf('\\');
+                    var pos = Math.max(pos1, pos2);
                     if (pos < 0) {
                         uri.filename = u
                     }
@@ -335,7 +334,7 @@
                         uri.filename = u.substring(pos + 1)
                     }
                 }
-                var index = uri.filename.lastIndexOf('.')
+                var index = uri.filename.lastIndexOf('.');
                 if (index != -1) {
                     uri.filetype = uri.filename.substring(index + 1).toLowerCase()
                 }
@@ -346,17 +345,17 @@
         },
 
         getFileSize: function (fileInputId) {
-            var file = document.getElementById(fileInputId)
-            var fileSize = 0
+            var file = document.getElementById(fileInputId);
+            var fileSize = 0;
             if (file) {
                 if (file.files) {
                     if (file.files.length > 0) {
                         fileSize = file.files[0].size
                     }
                 } else if (file.select && 'ActiveXObject' in window) {
-                    file.select()
-                    var fileobject = new ActiveXObject('Scripting.FileSystemObject')
-                    var file = fileobject.GetFile(file.value)
+                    file.select();
+                    var fileobject = new ActiveXObject('Scripting.FileSystemObject');
+                    var file = fileobject.GetFile(file.value);
                     fileSize = file.Size
                 }
             }
@@ -366,7 +365,7 @@
         hasFlash: _hasFlash,
 
         trim: function (str) {
-            str = typeof str === 'string' ? str : ''
+            str = typeof str === 'string' ? str : '';
 
             return str.trim
                 ? str.trim()
@@ -402,7 +401,7 @@
                     + "' target='_blank'>"
                     + v
                     + '</a>'
-            })
+            });
 
             return msg
         },
@@ -414,7 +413,7 @@
 
             var requireNonComma,
                 depth = null,
-                str = utils.trim(data + '')
+                str = utils.trim(data + '');
 
             return str && !utils.trim(
                 str.replace(/(,)|(\[|{)|(}|])|"(?:[^"\\\r\n]|\\["\\\/bfnrt]|\\u[\da-fA-F]{4})*"\s*:?|true|false|null|-?(?!0\d)\d+(?:\.\d+|)(?:[eE][+-]?\d+|)/g
@@ -427,8 +426,8 @@
                             return token
                         }
 
-                        requireNonComma = open || comma
-                        depth += !close - !open
+                        requireNonComma = open || comma;
+                        depth += !close - !open;
                         return ''
                     })
             )
@@ -448,26 +447,26 @@
         },
 
         uploadFile: function (options) {
-            var options = options || {}
-            options.onFileUploadProgress = options.onFileUploadProgress || EMPTYFN
-            options.onFileUploadComplete = options.onFileUploadComplete || EMPTYFN
-            options.onFileUploadError = options.onFileUploadError || EMPTYFN
-            options.onFileUploadCanceled = options.onFileUploadCanceled || EMPTYFN
+            var options = options || {};
+            options.onFileUploadProgress = options.onFileUploadProgress || EMPTYFN;
+            options.onFileUploadComplete = options.onFileUploadComplete || EMPTYFN;
+            options.onFileUploadError = options.onFileUploadError || EMPTYFN;
+            options.onFileUploadCanceled = options.onFileUploadCanceled || EMPTYFN;
 
-            var acc = options.accessToken || this.context.accessToken
+            var acc = options.accessToken || this.context.accessToken;
             if (!acc) {
                 options.onFileUploadError({
                     type: _code.WEBIM_UPLOADFILE_NO_LOGIN,
                     id: options.id
-                })
+                });
                 return
             }
 
-            var orgName, appName, devInfos
-            var appKey = options.appKey || this.context.appKey || ''
+            var orgName, appName, devInfos;
+            var appKey = options.appKey || this.context.appKey || '';
 
             if (appKey) {
-                devInfos = appKey.split('#')
+                devInfos = appKey.split('#');
                 orgName = devInfos[0]
                 appName = devInfos[1]
             }
@@ -476,12 +475,12 @@
                 options.onFileUploadError({
                     type: _code.WEBIM_UPLOADFILE_ERROR,
                     id: options.id
-                })
+                });
                 return
             }
 
-            var apiUrl = options.apiUrl
-            var uploadUrl = apiUrl + '/' + orgName + '/' + appName + '/chatfiles'
+            var apiUrl = options.apiUrl;
+            var uploadUrl = apiUrl + '/' + orgName + '/' + appName + '/chatfiles';
 
             if (!utils.isCanUploadFileAsync) {
                 if (utils.hasFlash && typeof options.flashUpload === 'function') {
@@ -500,32 +499,32 @@
                 options.onFileUploadError({
                     type: _code.WEBIM_UPLOADFILE_ERROR,
                     id: options.id
-                })
+                });
                 return
             } else if (fileSize <= 0) {
                 options.onFileUploadError({
                     type: _code.WEBIM_UPLOADFILE_ERROR,
                     id: options.id
-                })
+                });
                 return
             }
 
-            var xhr = utils.xmlrequest()
+            var xhr = utils.xmlrequest();
             var onError = function (e) {
                 options.onFileUploadError({
                     type: _code.WEBIM_UPLOADFILE_ERROR,
                     id: options.id,
                     xhr: xhr
                 })
-            }
+            };
             if (xhr.upload) {
                 xhr.upload.addEventListener('progress', options.onFileUploadProgress, false)
             }
             if (xhr.addEventListener) {
-                xhr.addEventListener('abort', options.onFileUploadCanceled, false)
+                xhr.addEventListener('abort', options.onFileUploadCanceled, false);
                 xhr.addEventListener('load', function (e) {
                     try {
-                        var json = utils.parseJSON(xhr.responseText)
+                        var json = utils.parseJSON(xhr.responseText);
                         try {
                             options.onFileUploadComplete(json)
                         } catch (e) {
@@ -542,14 +541,14 @@
                             xhr: xhr
                         })
                     }
-                }, false)
+                }, false);
                 xhr.addEventListener('error', onError, false)
             } else if (xhr.onreadystatechange) {
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4) {
                         if (ajax.status === 200) {
                             try {
-                                var json = utils.parseJSON(xhr.responseText)
+                                var json = utils.parseJSON(xhr.responseText);
                                 options.onFileUploadComplete(json)
                             } catch (e) {
                                 options.onFileUploadError({
@@ -568,7 +567,7 @@
                             })
                         }
                     } else {
-                        xhr.abort()
+                        xhr.abort();
                         options.onFileUploadCanceled()
                     }
                 }
@@ -576,25 +575,25 @@
 
             xhr.open('POST', uploadUrl)
 
-            xhr.setRequestHeader('restrict-access', 'true')
-            xhr.setRequestHeader('Accept', '*/*')// Android QQ browser has some problem with this attribute.
-            xhr.setRequestHeader('Authorization', 'Bearer ' + acc)
+            xhr.setRequestHeader('restrict-access', 'true');
+            xhr.setRequestHeader('Accept', '*/*');          // Android QQ browser has some problem with this attribute.
+            xhr.setRequestHeader('Authorization', 'Bearer ' + acc);
 
-            var formData = new FormData()
-            formData.append('file', options.file.data)
+            var formData = new FormData();
+            formData.append('file', options.file.data);
             xhr.send(formData)
         },
 
         download: function (options) {
-            options.onFileDownloadComplete = options.onFileDownloadComplete || EMPTYFN
-            options.onFileDownloadError = options.onFileDownloadError || EMPTYFN
+            options.onFileDownloadComplete = options.onFileDownloadComplete || EMPTYFN;
+            options.onFileDownloadError = options.onFileDownloadError || EMPTYFN;
 
-            var accessToken = options.accessToken || this.context.accessToken
+            var accessToken = options.accessToken || this.context.accessToken;
             if (!accessToken) {
                 options.onFileDownloadError({
                     type: _code.WEBIM_DOWNLOADFILE_NO_LOGIN,
                     id: options.id
-                })
+                });
                 return
             }
 
@@ -604,17 +603,18 @@
                     id: options.id,
                     xhr: xhr
                 })
-            }
+            };
 
             if (!utils.isCanDownLoadFile) {
-                options.onFileDownloadComplete()
+                options.onFileDownloadComplete();
                 return
             }
-            var xhr = utils.xmlrequest()
+
+            var xhr = utils.xmlrequest();
             if ('addEventListener' in xhr) {
                 xhr.addEventListener('load', function (e) {
                     options.onFileDownloadComplete(xhr.response, xhr)
-                }, false)
+                }, false);
                 xhr.addEventListener('error', onError, false)
             } else if ('onreadystatechange' in xhr) {
                 xhr.onreadystatechange = function () {
@@ -629,7 +629,7 @@
                             })
                         }
                     } else {
-                        xhr.abort()
+                        xhr.abort();
                         options.onFileDownloadError({
                             type: _code.WEBIM_DOWNLOADFILE_ERROR,
                             id: options.id,
@@ -655,7 +655,7 @@
                 'share-secret': options.secret,
                 'Authorization': 'Bearer ' + accessToken
             }
-            var headers = options.headers || {}
+            var headers = options.headers || {};
             for (var key in headers) {
                 innerHeaer[key] = headers[key]
             }
@@ -684,10 +684,10 @@
                 }
             }
 
-            var receiveMsg = message
-            var emessage = []
-            var expr = /\[[^[\]]{2,3}\]/mg
-            var emoji = receiveMsg.match(expr)
+            var receiveMsg = message;
+            var emessage = [];
+            var expr = /\[[^[\]]{2,3}\]/mg;
+            var emoji = receiveMsg.match(expr);
 
             if (!emoji || emoji.length < 1) {
                 return {
@@ -700,10 +700,10 @@
                     ]
                 }
             }
-            var isemoji = false
+            var isemoji = false;
             for (var i = 0; i < emoji.length; i++) {
                 var tmsg = receiveMsg.substring(0, receiveMsg.indexOf(emoji[i])),
-                    existEmoji = WebIM.Emoji.map[emoji[i]]
+                    existEmoji = WebIM.Emoji.map[emoji[i]];
 
                 if (tmsg) {
                     emessage.push({
@@ -721,7 +721,7 @@
                 var emojiStr = WebIM.Emoji.map ? WebIM.Emoji.path + existEmoji : null
 
                 if (emojiStr) {
-                    isemoji = true
+                    isemoji = true;
                     emessage.push({
                         type: 'emoji',
                         data: emojiStr
@@ -761,24 +761,24 @@
         xmlrequest: _xmlrequest,
 
         ajax: function (options) {
-            var dataType = options.dataType || 'text'
-            var suc = options.success || EMPTYFN
-            var error = options.error || EMPTYFN
-            var xhr = utils.xmlrequest()
+            var dataType = options.dataType || 'text';
+            var suc = options.success || EMPTYFN;
+            var error = options.error || EMPTYFN;
+            var xhr = utils.xmlrequest();
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
-                    var status = xhr.status || 0
+                    var status = xhr.status || 0;
                     if (status === 200) {
                         try {
                             switch (dataType) {
                                 case 'text':
-                                    suc(xhr.responseText)
-                                    return
+                                    suc(xhr.responseText);
+                                    return;
                                 case 'json':
-                                    var json = utils.parseJSON(xhr.responseText)
-                                    suc(json, xhr)
-                                    return
+                                    var json = utils.parseJSON(xhr.responseText);
+                                    suc(json, xhr);
+                                    return;
                                 case 'xml':
                                     if (xhr.responseXML && xhr.responseXML.documentElement) {
                                         suc(xhr.responseXML.documentElement, xhr)
@@ -802,7 +802,7 @@
                         error({
                             type: _code.WEBIM_CONNCTION_AJAX_ERROR,
                             data: xhr.responseText
-                        })
+                        });
                         return
                     }
                 }
@@ -812,7 +812,7 @@
                         data: xhr.responseText
                     })
                 }
-            }
+            };
 
             if (options.responseType) {
                 if (xhr.responseType) {
@@ -827,7 +827,7 @@
 
             var type = options.type || 'POST',
                 data = options.data || null,
-                tempData = ''
+                tempData = '';
 
             if (type.toLowerCase() === 'get' && data) {
                 for (var o in data) {
@@ -835,33 +835,32 @@
                         tempData += o + '=' + data[o] + '&'
                     }
                 }
-                tempData = tempData ? tempData.slice(0, -1) : tempData
-                options.url += (options.url.indexOf('?') > 0 ? '&' : '?') + (tempData ? tempData + '&' : tempData) + '_v=' + new Date().getTime()
-                data = null
+                tempData = tempData ? tempData.slice(0, -1) : tempData;
+                options.url += (options.url.indexOf('?') > 0 ? '&' : '?') + (tempData ? tempData + '&' : tempData) + '_v=' + new Date().getTime();
+                data = null;
                 tempData = null
             }
-            xhr.open(type, options.url)
+            xhr.open(type, options.url);
 
             if (utils.isCanSetRequestHeader) {
-                var headers = options.headers || {}
+                var headers = options.headers || {};
                 for (var key in headers) {
                     if (headers.hasOwnProperty(key)) {
                         xhr.setRequestHeader(key, headers[key])
                     }
                 }
-                // todo by lwz
                 xhr.setRequestHeader('content-type', 'application/json')
             }
 
-            xhr.send(data)
+            xhr.send(data);
             return xhr
         },
         ts: function () {
-            var d = new Date()
-            var Hours = d.getHours() // 获取当前小时数(0-23)
-            var Minutes = d.getMinutes() // 获取当前分钟数(0-59)
-            var Seconds = d.getSeconds() // 获取当前秒数(0-59)
-            var Milliseconds = d.getMilliseconds() // 获取当前毫秒
+            var d = new Date();
+            var Hours = d.getHours();                   // get current hour (0-23)
+            var Minutes = d.getMinutes();               // get current min (0-59)
+            var Seconds = d.getSeconds();               // get current sec (0-59)
+            var Milliseconds = d.getMilliseconds();     // get current ms
             return (Hours < 10 ? '0' + Hours : Hours) + ':' + (Minutes < 10 ? '0' + Minutes : Minutes) + ':' + (Seconds < 10 ? '0' + Seconds : Seconds) + ':' + Milliseconds + ' '
         },
 
@@ -873,8 +872,7 @@
             }
             return ''
         }
-
-    }
+    };
 
     exports.utils = utils
-}())
+}());

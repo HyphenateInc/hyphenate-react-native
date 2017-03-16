@@ -46,7 +46,7 @@ window.Strophe.Websocket.prototype._closeSocket = function () {
     } else {
         this.socket = null
     }
-}
+};
 
 /**
  *
