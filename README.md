@@ -36,7 +36,7 @@ $ cd hyphenate-react-native
 2. Install dependencies 
 
 ```
-$ npm install`
+$ npm install
 ```
 
 **Note:**
