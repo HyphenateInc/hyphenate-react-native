@@ -4,7 +4,7 @@
 node_modules
 .idea/inspectionProfiles/
 /npm-debug.log
-/ios/build/
+ios/build/
 ios/app.xcodeproj/project.xcworkspace/xcuserdata/
 ios/app.xcodeproj/xcuserdata/
 ios/build/Build/Intermediates/AirMaps.build/Debug-iphonesimulator/AirMaps.build/dgph

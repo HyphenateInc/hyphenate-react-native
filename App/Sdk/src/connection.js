@@ -143,21 +143,21 @@ var _listenNetwork = function (onlineCallback, offlineCallback) {
             })
         }
     } else {
-      /* var onlineTmp = window.ononline;
-       var offlineTmp = window.onoffline;
+        /* var onlineTmp = window.ononline;
+         var offlineTmp = window.onoffline;
 
-       window.attachEvent('ononline', function () {
-       try {
-       typeof onlineTmp === 'function' && onlineTmp();
-       } catch ( e ) {}
-       onlineCallback();
-       });
-       window.attachEvent('onoffline', function () {
-       try {
-       typeof offlineTmp === 'function' && offlineTmp();
-       } catch ( e ) {}
-       offlineCallback();
-       }); */
+         window.attachEvent('ononline', function () {
+         try {
+         typeof onlineTmp === 'function' && onlineTmp();
+         } catch ( e ) {}
+         onlineCallback();
+         });
+         window.attachEvent('onoffline', function () {
+         try {
+         typeof offlineTmp === 'function' && offlineTmp();
+         } catch ( e ) {}
+         offlineCallback();
+         }); */
     }
 }
 
@@ -260,7 +260,7 @@ var _parseNameFromJidFn = function (jid, domain) {
 }
 
 var _parseFriend = function (queryTag, conn, from) {
-    var rouster = []
+    var roster = []
     var items = queryTag.getElementsByTagName('item')
     if (items) {
         for (var i = 0; i < items.length; i++) {
@@ -290,7 +290,7 @@ var _parseFriend = function (queryTag, conn, from) {
                 groups.push(Strophe.getText(group))
             })
             friend.groups = groups
-            rouster.push(friend)
+            roster.push(friend)
             // after B agreed -> B subscribes A
             if (conn && (subscription == 'from')) {
                 conn.subscribe({
@@ -305,7 +305,7 @@ var _parseFriend = function (queryTag, conn, from) {
             }
         }
     }
-    return rouster
+    return roster
 }
 
 var _login = function (options, conn) {
@@ -580,7 +580,7 @@ var _validCheck = function (options, conn) {
         resource += user + new Date().getTime() + Math.floor(Math.random().toFixed(6) * 1000000)
     }
     conn.context.jid = jid + '/' + resource
-  /* jid: {appkey}_{username}@domain/resource */
+    /* jid: {appkey}_{username}@domain/resource */
     conn.context.userId = user
     conn.context.appKey = appKey
     conn.context.appName = appName
@@ -1128,8 +1128,8 @@ connection.prototype.handleIqRoster = function (e) {
     var msgBodies = e.getElementsByTagName('query')
     if (msgBodies && msgBodies.length > 0) {
         var queryTag = msgBodies[0]
-        var rouster = _parseFriend(queryTag, this, from)
-        this.onRoster(rouster)
+        var roster = _parseFriend(queryTag, this, from)
+        this.onRoster(roster)
     }
     return true
 }
@@ -1527,13 +1527,13 @@ connection.prototype.getRoster = function (options) {
     var options = options || {}
     var suc = options.success || this.onRoster
     var completeFn = function (ele) {
-        var rouster = []
+        var roster = []
         var msgBodies = ele.getElementsByTagName('query')
         if (msgBodies && msgBodies.length > 0) {
             var queryTag = msgBodies[0]
-            rouster = _parseFriend(queryTag)
+            roster = _parseFriend(queryTag)
         }
-        suc(rouster, ele)
+        suc(roster, ele)
     }
     var error = options.error || this.onError
     var failFn = function (ele) {

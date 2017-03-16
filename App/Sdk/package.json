@@ -14,7 +14,7 @@
     "build": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "WytheMe",
+  "author": "Hyphenate",
   "license": "MIT",
   "dependencies": {},
   "repository": {
