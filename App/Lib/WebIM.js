@@ -19,7 +19,7 @@ console.groupEnd = console.groupEnd || function () {
 let WebIM = window.WebIM = websdk;
 window.WebIM.config = config;
 window.DOMParser = xmldom.DOMParser;
-let document = window.document = new DOMParser().parseFromString("<?xml version='1.0'?>\n", 'text/xml');
+window.document = new DOMParser().parseFromString("<?xml version='1.0'?>\n", 'text/xml');
 
 if (WebIM.config.isDebug) {
     function ts() {
@@ -58,19 +58,6 @@ if (WebIM.config.autoSignIn) {
     WebIM.config.autoSignInName = 'username123';
     WebIM.config.autoSignInPwd = 'password123';
 }
-
-// var stropheConn = new window.Strophe.Connection("ws://im-api.hyphenate.io/ws/", {
-//                 inactivity: 30,
-//                 maxRetries: 5,
-//                 pollingTime: 4500
-//             });
-//
-// stropheConn.connect(
-//   'hyphenatedemo#chatdemoui_liuwz@hyphenate.io',
-//   '$t$' + 'YWMtmbQEBKKIEeaGmMtXyg5n1wAAAVlkQvGO2WOJGlMCEJKM4VV9GCMnb_XLCXU',
-//   function() {
-//     console.log(arguments, 'ggogogo');
-//   }, stropheConn.wait, stropheConn.hold);
 
 WebIM.conn = new WebIM.connection({
     isMultiLoginSessions: WebIM.config.isMultiLoginSessions,

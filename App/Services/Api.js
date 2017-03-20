@@ -20,7 +20,7 @@ const create = (baseURL = '') => {
     },
     // 10 second timeout...
     timeout: 10000
-  })
+  });
 
   // Force OpenWeather API Key on all requests
   // api.addRequestTransform((request) => {
@@ -67,7 +67,7 @@ const create = (baseURL = '') => {
     // a list of the API functions from step 2
     register
   }
-}
+};
 
 // let's return back our create method as the default.
 export default {
