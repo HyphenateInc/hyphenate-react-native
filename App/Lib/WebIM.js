@@ -8,7 +8,7 @@ import config from './WebIMConfig'
 import Api from '../Services/Api'
 
 
-// init DOMParser / document for strophe and sdk
+// init DOMParser / document for strophe and Hyphenate sdk
 // window.WebIM.config.isDebug = true
 console = console || {};
 console.group = console.group || function () {

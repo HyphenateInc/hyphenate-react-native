@@ -24,7 +24,7 @@ let config = {
     // ios must be https!!!
     apiURL: 'https://api.hyphenate.io',
   /*
-   * Application AppKey
+   * Application API Key
    */
     appkey: 'hyphenatedemo#hyphenatedemo',
   /*

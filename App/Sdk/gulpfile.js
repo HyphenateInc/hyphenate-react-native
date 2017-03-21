@@ -4,7 +4,6 @@ var gulp = require('gulp')
 var webpack = require('webpack-stream')
 var mocha = require('gulp-mocha')   // for unit testing
 var babel = require('gulp-babel')   // for translate ES6 to ES5
-// var browserify = require('browserify');
 // var source = require('vinyl-source-stream');
 // var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify')

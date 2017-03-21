@@ -1,6 +1,3 @@
-// ;
-// (function (window, undefined) {
-
 var _version = '1.1.3'
 var _code = require('./status').code
 var _utils = require('./utils').utils

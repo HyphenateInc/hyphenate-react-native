@@ -1973,7 +1973,7 @@ duplexer2@^0.1.4:
   dependencies:
     readable-stream "^2.0.2"
 
-hyphenate-websdk@^1.1.4:
+hyphenate-web@^1.4.7:
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/hyphenate-websdk/-/hyphenate-websdk-1.4.7.tgz#65493bb444ceacd98475d5b837cbae4ee84dadc1"
 

@@ -4,7 +4,7 @@
         uploadIndex = 100,
         downloadIndex = 200,
         msgIndex = 300,
-        statusIndex = 400
+        statusIndex = 400;
 
     exports.code = {
         WEBIM_CONNCTION_USER_NOT_ASSIGN_ERROR: connIndex++,
@@ -80,4 +80,4 @@
         STATUS_CLOSED: statusIndex++,
         STATUS_ERROR: statusIndex++
     }
-}())
+}());

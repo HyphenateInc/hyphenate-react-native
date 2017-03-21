@@ -1,4 +1,4 @@
-;(function () {
+(function () {
     function Array_h (length) {
         this.array = length === undefined ? [] : new Array(length)
     }
@@ -58,7 +58,7 @@
         clear: function () {
             this.array.length = 0
         }
-    }
+    };
 
     /**
      * First Input First Output
@@ -67,7 +67,7 @@
      */
     var Queue = function () {
         this._array_h = new Array_h()
-    }
+    };
 
     Queue.prototype = {
         _index: 0,
@@ -88,11 +88,11 @@
          * @return {Object} [description]
          */
         pop: function () {
-            var ret = null
+            var ret = null;
             if (this._array_h.length()) {
-                ret = this._array_h.at(this._index)
+                ret = this._array_h.at(this._index);
                 if (++this._index * 2 >= this._array_h.length()) {
-                    this._array_h.slice(this._index)
+                    this._array_h.slice(this._index);
                     this._index = 0
                 }
             }
@@ -105,7 +105,7 @@
          * @return {Object} [description]
          */
         head: function () {
-            var ret = null, len = this._array_h.length()
+            var ret = null, len = this._array_h.length();
             if (len) {
                 ret = this._array_h.at(len - 1)
             }
@@ -146,6 +146,6 @@
         clear: function () {
             this._array_h.clear()
         }
-    }
+    };
     exports.Queue = Queue
-}())
+}());
