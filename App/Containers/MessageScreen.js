@@ -121,7 +121,7 @@ class MessageScreen extends React.Component {
     handleRefresh() {
         this.setState({isRefreshing: true});
         // this.props.getContacts()
-        // TODO: 刷新成功/刷新失败
+        // TODO: refresh succeed/failed
         setTimeout(() => {
             this.setState({isRefreshing: false})
         }, 1000)
@@ -518,6 +518,8 @@ class MessageScreen extends React.Component {
                       }}
                       underlineColorAndroid='transparent'
                       onSubmitEditing={() => this.refs.search.focus()}
+
+                      // I18n for Internationalization
                       placeholder={I18n.t('sendMessage')}
                   />
                 </View>
@@ -551,6 +553,8 @@ class MessageScreen extends React.Component {
                   {/*<Image source={Images.iconFile}/>*/}
                   {/*</TouchableOpacity>*/}
               </View>
+
+                {/*// emoji is sending in text format with emoji library mapping*/}
                 {this._renderEmoji()}
             </View>
         )
@@ -581,7 +585,7 @@ MessageScreen.propTypes = {
     message: PropTypes.object,
     // chatType: PropTypes.oneOf(['chat', 'groupChat']),
     // id: PropTypes.string
-}
+};
 
 // ------------ redux -------------
 const mapStateToProps = (state) => {
@@ -591,13 +595,13 @@ const mapStateToProps = (state) => {
         // chatType: 'chat',
         // id: 'lwz3'
     }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
         sendTxtMessage: (chatType, id, message) => dispatch(MessageActions.sendTxtMessage(chatType, id, message)),
         sendImgMessage: (chatType, id, message, source) => dispatch(MessageActions.sendImgMessage(chatType, id, message, source))
     }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageScreen)

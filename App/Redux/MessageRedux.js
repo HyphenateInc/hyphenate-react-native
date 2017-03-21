@@ -99,7 +99,7 @@ const {Types, Creators} = createActions({
   sendTxtMessage: (chatType, chatId, message = {}) => {
     return (dispatch, getState) => {
       const pMessage = parseFromLocal(chatType, chatId, message, 'txt')
-      const {body, id, to} =  pMessage
+      const {body, id, to} = pMessage
       const {type, msg} = body
       const msgObj = new WebIM.message(type, id);
       console.log(pMessage)
@@ -172,7 +172,7 @@ const {Types, Creators} = createActions({
       dispatch(Creators.addMessage(pMessage, type))
     }
   },
-})
+});
 
 export const MessageTypes = Types
 export default Creators
