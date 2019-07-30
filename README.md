@@ -1,5 +1,7 @@
 # React Native
 
+This project is a React Native implementation of Hyphenate, a Mobile Instant Messaging as a Service.
+
 ## Content
 
 
